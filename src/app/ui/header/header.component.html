@@ -1,0 +1,59 @@
+<nav class="navbar navbar-dark bg-dark">
+  <!-- This is the application title with a link to the root -->
+  <a class="navbar-brand" routerLinkActive="active" routerLink="/"
+    >Reserva de Servicios</a
+  >
+  <!-- This is a spacer so the links move to the end -->
+  <div class="mr-auto"></div>
+  <!-- This main navigation links are defined here -->
+  <div class="navbar-expand">
+    <div class="navbar-nav">
+      <!-- Each link has the routerLink property set to a different route -->
+      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/home">
+        Inicio
+      </a>
+      <a
+        class="nav-item nav-link"
+        *ngIf="!isLogged"
+        routerLinkActive="active"
+        routerLink="/registrarse"
+      >
+        Registrarse
+      </a>
+      <a
+        class="nav-item nav-link"
+        *ngIf="!isLogged"
+        routerLinkActive="active"
+        routerLink="/login"
+      >
+        Iniciar Sesión
+      </a>
+
+      <a
+        class="nav-item nav-link"
+        *ngIf="isLogged"
+        routerLinkActive="active"
+        routerLink="/listarServicios"
+      >
+        Gestión de Servicios
+      </a>
+      <a
+        class="nav-item nav-link"
+        *ngIf="isLogged"
+        routerLinkActive="active"
+        routerLink="/cuenta"
+      >
+        Cuenta
+      </a>
+      <a
+        class="nav-item nav-link"
+        *ngIf="isLogged"
+        routerLinkActive="active"
+        (click)="onLogOut()"
+        type="reset"
+      >
+        Cerrar Sesión
+      </a>
+    </div>
+  </div>
+</nav>

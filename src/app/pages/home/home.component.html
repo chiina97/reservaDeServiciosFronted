@@ -1,0 +1,57 @@
+<div style="margin-left: 0.5rem">
+  <h3><i class="fas fa-bars"></i> Mejores Rankeados:</h3>
+
+  <select id="types" name="types" [(ngModel)]="nameType" required>
+    <option *ngFor="let t of types" [ngValue]="t">
+      {{ t.type }}
+    </option>
+  </select>
+  <a style="color: gray" (click)="search()"> <i class="fas fa-search"></i></a>
+</div>
+
+<br />
+<div *ngIf="services.length > 0">
+  <div class="d-flex justify-content-between ml-2">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Ranking</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let service of services
+              | paginate
+                : {
+                    itemsPerPage: 5,
+                    currentPage: page,
+                    totalItems: length
+                  }
+          "
+        >
+          <td>nombre1</td>
+          <td>tipo2</td>
+          <td>Ranking numero?</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <pagination-controls
+    previousLabel=""
+    nextLabel=""
+    (pageChange)="page = $event"
+  ></pagination-controls>
+  <div *ngIf="services.length == 0">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">No existen servicios</h5>
+        <p class="card-text">
+          Podrá visualizar los servicios cuando esten cargados en el sistema
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

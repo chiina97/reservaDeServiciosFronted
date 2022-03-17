@@ -1,0 +1,127 @@
+<div class="d-flex flex-column h-100 justify-content-center mb-4">
+  <div class="container">
+    <div class="row">
+      <!-- This is a single column that is responsive -->
+      <div class="col-12 col-md-9 offset-md-1">
+        <div class="card">
+          <div class="card-header card text-white bg-primary mb-3">
+            Servicio
+          </div>
+          <div class="card-body">
+            <!-- The formGroup 'form' is defined in the component class -->
+            <form #quizForm="ngForm">
+              <div class="row g-2">
+                <div class="col-auto">
+                  <label for="name">Nombre</label>
+                  <!-- The formControlName defines the name of the field in the formGroup -->
+                  <input
+                    name="name"
+                    [(ngModel)]="service.name"
+                    class="form-control"
+                    placeholder="Ingrese el nombre del servicio"
+                    required
+                  />
+                </div>
+
+                <div class="col-auto">
+                  <label for="url">Url</label>
+                  <!-- The formControlName defines the name of the field in the formGroup -->
+                  <input
+                    name="url"
+                    [(ngModel)]="service.urlWeb"
+                    class="form-control"
+                    placeholder="Ingrese la url"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <!-- The formControlName defines the name of the field in the formGroup -->
+                <textarea
+                  name="description"
+                  [(ngModel)]="service.description"
+                  class="form-control"
+                  placeholder="Ingrese la descripcion"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-auto">
+                  <label for="type">Tipo</label>
+                  <!-- The formControlName defines the name of the field in the formGroup -->
+
+                  <p>
+                    <select
+                      id="types"
+                      name="types"
+                      [(ngModel)]="nameType"
+                      required
+                    >
+                      <option *ngFor="let t of types" [ngValue]="t">
+                        {{ t.type }}
+                      </option>
+                    </select>
+                  </p>
+                </div>
+              </div>
+              <div class="col-auto">
+                <label for="type">Wsp</label>
+                <input
+                  name="wsp"
+                  [(ngModel)]="service.wsp"
+                  class="form-control"
+                  placeholder="Ingrese su wsp"
+                />
+              </div>
+              <div class="col-auto">
+                <label for="type">Instagram</label>
+                <input
+                  name="instagram"
+                  [(ngModel)]="service.instagram"
+                  class="form-control"
+                  placeholder="Ingrese su instagram"
+                />
+              </div>
+              <div class="col-auto">
+                <label for="type">Twitter</label>
+                <input
+                  name="twitter"
+                  [(ngModel)]="service.twitter"
+                  class="form-control"
+                  placeholder="Ingrese su twitter"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <div class="form-group">
+              <div class="d-flex justify-content-between ml-2">
+                <div>
+                  <button
+                    class="btn btn-secondary"
+                    onclick="window.history.back();"
+                    type="submit"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+
+                <!-- The button has a click handler, it will be disabled if the form is not valid -->
+
+                <button
+                  (click)="create()"
+                  type="submit"
+                  [disabled]="!quizForm.form.valid"
+                  class="btn btn-success"
+                >
+                  Guardar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

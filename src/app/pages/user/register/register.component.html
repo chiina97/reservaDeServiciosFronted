@@ -1,0 +1,93 @@
+<div class="d-flex flex-column h-100 justify-content-center mb-4">
+  <div class="container">
+    <div class="row">
+      <!-- This is a single column that is responsive -->
+      <div class="col-12 col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-header card text-white bg-primary mb-3">
+            Registrarse
+          </div>
+          <div class="card-body">
+            <!-- The formGroup 'form' is defined in the component class -->
+            <form #quizForm="ngForm">
+              <div class="form-group">
+                <label for="name">Nombre</label>
+                <!-- The formControlName defines the name of the field in the formGroup -->
+                <input
+                  name="name"
+                  [(ngModel)]="user.name"
+                  class="form-control"
+                  placeholder="Ingrese su nombre"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="surname">Apellido</label>
+                <!-- The formControlName defines the name of the field in the formGroup -->
+                <input
+                  name="surname"
+                  [(ngModel)]="user.surname"
+                  class="form-control"
+                  placeholder="Ingrese su apellido"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="mail">Mail</label>
+                <!-- The formControlName defines the name of the field in the formGroup -->
+                <input
+                  name="mail"
+                  [(ngModel)]="user.mail"
+                  type="email"
+                  class="form-control"
+                  placeholder="Ingrese un mail"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="username">Nombre de usuario</label>
+                <!-- The formControlName defines the name of the field in the formGroup -->
+                <input
+                  name="username"
+                  [(ngModel)]="user.username"
+                  class="form-control"
+                  placeholder="Ingrese un nombre de usuario"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input
+                  name="password"
+                  [(ngModel)]="user.password"
+                  type="password"
+                  class="form-control"
+                  placeholder="Ingrese una contraseña"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <div class="form-group">
+              <div class="d-flex justify-content-between ml-2">
+                <div></div>
+                <!-- The button has a click handler, it will be disabled if the form is not valid -->
+                <button
+                  (click)="create()"
+                  type="submit"
+                  [disabled]="!quizForm.form.valid"
+                  class="btn btn-success"
+                >
+                  Registrarse
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

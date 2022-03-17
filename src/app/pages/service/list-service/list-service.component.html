@@ -1,0 +1,100 @@
+<div style="margin-left: 0.5rem">
+  <h3>
+    <i class="fas fa-bars"></i> Listado De Servicios:
+    <div class="d-flex justify-content-between ml-2">
+      <a class="btn btn-primary" routerLink="/crearServicio">
+        Agregar servicio <i class="fas fa-plus"></i
+      ></a>
+    </div>
+  </h3>
+</div>
+<br />
+<div *ngIf="services.length == 0">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Servicios no encontrados</h5>
+      <p class="card-text">Debe agregar un servicio para ver su listado</p>
+    </div>
+  </div>
+</div>
+<div *ngIf="services.length > 0">
+  <div class="d-flex justify-content-between ml-2">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Redes sociales</th>
+          <th scope="col">Url web</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let service of services
+              | paginate
+                : {
+                    itemsPerPage: 4,
+                    currentPage: page,
+                    totalItems: length
+                  }
+          "
+        >
+          <td>{{ service?.name }}</td>
+          <td>{{ service?.typeService?.type }}</td>
+          <td>{{ service?.description }}</td>
+          <td>
+            <p *ngIf="service.wsp != undefined">Wsp: {{ service?.wsp }}</p>
+            <p *ngIf="service.twitter != undefined">
+              Twitter: {{ service?.twitter }}
+            </p>
+            <p *ngIf="service.instagram != undefined">
+              Intagram: {{ service?.instagram }}
+            </p>
+            <p
+              *ngIf="
+                service.wsp == undefined &&
+                service.instagram == undefined &&
+                service.twitter == undefined
+              "
+            >
+              -
+            </p>
+          </td>
+          <td>
+            <p *ngIf="service.urlWeb != undefined">{{ service?.urlWeb }}</p>
+            <p *ngIf="service.urlWeb == undefined">-</p>
+          </td>
+          <td>
+            <button
+              class="btn btn-warning ml-2"
+              [routerLink]="['/editarServicio', service.id]"
+            >
+              Editar <i class="far fa-edit"></i>
+            </button>
+            <button (click)="deleteById(service)" class="btn btn-danger ml-2">
+              Eliminar <i class="far fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <pagination-controls
+    previousLabel=""
+    nextLabel=""
+    (pageChange)="page = $event"
+  ></pagination-controls>
+  <div *ngIf="services.length == 0">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">No existen servicios</h5>
+        <p class="card-text">
+          Podrá visualizar los servicios cuando esten cargados en el sistema
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
