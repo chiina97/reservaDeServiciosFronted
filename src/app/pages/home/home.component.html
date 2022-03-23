@@ -6,9 +6,20 @@
       {{ t.type }}
     </option>
   </select>
-  <a style="color: gray" (click)="search()"> <i class="fas fa-search"></i></a>
+  <button style="color: gray" (click)="search()">
+    <i class="fas fa-search"></i>
+  </button>
 </div>
-
+<div *ngIf="services.length == 0">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">No se encontraron servicios</h5>
+      <p class="card-text">
+        Podrá visualizar los servicios cuando esten cargados en el sistema
+      </p>
+    </div>
+  </div>
+</div>
 <br />
 <div *ngIf="services.length > 0">
   <div class="d-flex justify-content-between ml-2">
@@ -17,7 +28,7 @@
         <tr>
           <th scope="col">Nombre</th>
           <th scope="col">Tipo</th>
-          <th scope="col">Ranking</th>
+          <th scope="col">Detalle</th>
         </tr>
       </thead>
       <tbody>
@@ -32,9 +43,16 @@
                   }
           "
         >
-          <td>nombre1</td>
-          <td>tipo2</td>
-          <td>Ranking numero?</td>
+          <td>{{ service?.name }}</td>
+          <td>{{ service?.typeService?.type }}</td>
+          <td>
+            <button
+              class="btn btn-primary"
+              [routerLink]="['/verDetalle', service.id]"
+            >
+              Ver Detalle
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -44,14 +62,4 @@
     nextLabel=""
     (pageChange)="page = $event"
   ></pagination-controls>
-  <div *ngIf="services.length == 0">
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">No existen servicios</h5>
-        <p class="card-text">
-          Podrá visualizar los servicios cuando esten cargados en el sistema
-        </p>
-      </div>
-    </div>
-  </div>
 </div>

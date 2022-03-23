@@ -26,7 +26,6 @@ export class UpdateServiceComponent implements OnInit {
   enable!: boolean;
   user!: User;
 
-
   types: TypeService[] = [];
 
   nameType!: any;
@@ -55,21 +54,16 @@ export class UpdateServiceComponent implements OnInit {
       this.wsp = data.wsp;
       this.urlWeb = data.urlWeb;
 
-      this.nameType = this.service.typeService
-      console.log("servicio", this.service)
-      console.log("data", this.nameType)
+      this.nameType = this.service.typeService;
     });
   }
 
   findAllTypesServices() {
     this.typeService.getAll().subscribe({
       next: (data) => {
-        console.log('tipos de servicio', data);
         this.types = data;
       },
-      error: (err) => {
-        console.log('error en los tipos de servicios', err);
-      },
+      error: (err) => {},
     });
   }
 
@@ -82,7 +76,6 @@ export class UpdateServiceComponent implements OnInit {
     this.service.twitter = this.twitter;
     this.service.wsp = this.wsp;
     this.service.urlWeb = this.urlWeb;
-    console.log('que tiene el servicio actualizado', this.service);
     this.serviceService.update(id, this.service).subscribe({
       next: (data) => {
         this.toastr.success('', data['mensaje'], {

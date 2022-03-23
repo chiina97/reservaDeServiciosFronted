@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceI } from 'src/app/interface/service.interface';
 import { TypeService } from 'src/app/models/type-service';
 import { ServiceService } from 'src/app/services/service.service';
 import { TokenService } from 'src/app/services/token.service';
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   isLogged = false;
   username!: String;
 
-  services: [] = [];
+  services: ServiceI[] = [];
   userId!: number;
 
   types: TypeService[] = [];
@@ -36,23 +37,27 @@ export class HomeComponent implements OnInit {
     this.userIsLogged();
   }
 
-  search() {}
+  search() {
+    this.serviceService.findAllByType(this.nameType.id).subscribe({
+      next: (data) => {
+        this.services = data;
+      },
+      error: (err) => {},
+    });
+  }
+
   findAllTypesServices() {
     this.typeService.getAll().subscribe({
       next: (data) => {
-        console.log('tipos de servicio', data);
         this.types = data;
       },
-      error: (err) => {
-        console.log('error en los tipos de servicios', err);
-      },
+      error: (err) => {},
     });
   }
   getAllServices() {
     this.serviceService.findAll().subscribe({
       next: (data) => {
         this.services = data;
-        console.log('todos los servicios', this.services);
       },
     });
   }

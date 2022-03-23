@@ -40,7 +40,6 @@ export class ListServiceComponent implements OnInit {
     ) {
       this.serviceService.delete(service.id).subscribe({
         next: (data) => {
-          console.log('entre al eliminar');
           this.toastr.success('', data['mensaje'], {
             timeOut: 3000,
             positionClass: 'toast-top-center',

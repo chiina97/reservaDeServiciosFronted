@@ -19,11 +19,10 @@ export class ServiceService {
 
   //obtener un service
   public findById(id: number): Observable<any> {
-    return this.http.get<any>(this.serviceURL + '/' + id);
+    return this.http.get<any>(this.serviceURL + '/detalle/' + id);
   }
 
   delete(id: number): Observable<any> {
-    console.log('service del service', id);
     return this.http.delete<any>(this.serviceURL + '/' + id);
   }
 
@@ -37,5 +36,9 @@ export class ServiceService {
 
   public findAll(): Observable<any> {
     return this.http.get<any>(this.serviceURL + '/list');
+  }
+
+  public findAllByType(id: number): Observable<any> {
+    return this.http.get<any>(this.serviceURL + '/list/' + id);
   }
 }

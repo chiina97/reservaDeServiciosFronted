@@ -35,12 +35,9 @@ export class CreateServiceComponent implements OnInit {
   findAllTypesServices() {
     this.typeService.getAll().subscribe({
       next: (data) => {
-        console.log('tipos de servicio', data);
         this.types = data;
       },
-      error: (err) => {
-        console.log('error en los tipos de servicios', err);
-      },
+      error: (err) => {},
     });
   }
 
@@ -51,7 +48,6 @@ export class CreateServiceComponent implements OnInit {
     this.service.userId = this.userId;
     this.service.typeServiceId = tipo.id;
 
-    console.log('seteado todo el service', this.service);
     this.serviceService.create(this.service).subscribe({
       next: (data) => {
         this.toastr.success('', 'servicios creado!', {

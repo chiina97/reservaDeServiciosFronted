@@ -25,10 +25,8 @@ export class LoginComponent implements OnInit {
         this.tokenService.setToken(res.token);
         this.router.navigate(['/home']);
         window.location.reload();
-        console.log('funciona');
       },
       error: (err) => {
-        console.log('error', err, 'usuario', this.user);
         this.toastr.error('usuario/contraseña incorrecta', 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',

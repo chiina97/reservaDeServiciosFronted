@@ -1,0 +1,39 @@
+<div class="col-md-6 offset-md-3" style="padding-top: 2em">
+  <div class="card mb-3">
+    <div class="card-header">
+      <i class="far fa-address-card"></i> Información Del Servicio
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Service</h5>
+      <p class="card-text">{{ service?.name }}</p>
+      <h5 class="card-title">Descripcion</h5>
+      <p class="card-text">{{ service?.description }}</p>
+      <h5 class="card-title" *ngIf="service.instagram != undefined">
+        instagram
+      </h5>
+      <p class="card-text" *ngIf="service.instagram != undefined">
+        {{ service?.instagram }}
+      </p>
+      <h5 class="card-title" *ngIf="service.twitter != undefined">Twitter</h5>
+      <p class="card-text" *ngIf="service.twitter != undefined">
+        {{ service?.twitter }}
+      </p>
+      <h5 class="card-title" *ngIf="service.wsp != undefined">Wsp</h5>
+      <p class="card-text" *ngIf="service.wsp != undefined">
+        {{ service?.wsp }}
+      </p>
+      <h5 class="card-title" *ngIf="service.urlWeb != undefined">Url Web</h5>
+      <p class="card-text" *ngIf="service.urlWeb != undefined">
+        {{ service?.urlWeb }}
+      </p>
+
+      <button
+        class="btn btn-success"
+        (click)="showPoster()"
+        *ngIf="isLogged == true"
+      >
+        Contratar
+      </button>
+    </div>
+  </div>
+</div>

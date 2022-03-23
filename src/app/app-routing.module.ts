@@ -67,6 +67,13 @@ const routes: Routes = [
             (m) => m.UserShowModule
           ),
       },
+      {
+        path: 'verDetalle/:id',
+        loadChildren: () =>
+          import('./pages/service/show-service/show-service.module').then(
+            (m) => m.ShowServiceModule
+          ),
+      },
     ],
   },
 
