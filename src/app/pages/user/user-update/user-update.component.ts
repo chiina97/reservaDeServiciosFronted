@@ -47,7 +47,6 @@ export class UserUpdateComponent implements OnInit {
     this.user.mail = this.mail;
     this.user.name = this.name;
     this.user.surname = this.surname;
-    this.username = this.username;
 
     this.userService.update(this.userId, this.user).subscribe({
       next: (data) => {
